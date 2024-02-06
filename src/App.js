@@ -6,7 +6,7 @@ import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
 function App() {
   /*
-  Define state variables for 
+  Defining state variables for 
   contacts and appointments 
   */
 
@@ -19,22 +19,16 @@ function App() {
   };
 
   /*
-  Implement functions to add data to
-  contacts and appointments
+  functions to add data to
+  contacts and appointments with spread operator
   */
 
-  let addContacts = (input) => {
-    if (!input) {
-      alert('add input')
-    } else {
-      setContacts(input)
-    }
+  let addContacts = (i) => {
+   setContacts([i, ...i])
   };
 
-  let addAppointments = (i) => {
-    if (!i) {
-      alert('add input')
-    } else { setAppointments(i) }
+  const addAppointments = (i) => {
+    setAppointments([i, ...i])
   };
 
   return (
@@ -53,11 +47,11 @@ function App() {
             <Redirect to={ROUTES.CONTACTS} />
           </Route>
           <Route path={ROUTES.CONTACTS}>
-             {/* Add props to ContactsPage */}
+             {/* Adding props to ContactsPage */}
             <ContactsPage contacts={contacts} addContacts={addContacts}/>
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
+            {/* Adding props to AppointmentsPage */}
             <AppointmentsPage appointments={appointments} addAppointments={addAppointments}/>
           </Route>
         </Switch>

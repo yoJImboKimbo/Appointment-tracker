@@ -3,23 +3,40 @@ import { useState, useEffect } from "react";
 
 export const ContactsPage = (contacts, addContacts) => {
   /*
-  Define state variables for 
+  Defining state variables for 
   contact info and duplicate check
   */
 
   let [ name, setName ] = useState('');
   let [ phone, setPhone ] = useState('');
   let [ email, setEmail ] = useState('');
-  let [ dup, setDup ] = useState('');
+  let [ dup, setDup ] = useState(false);
+
+  //props extracted
 
   let contactList = contacts.contacts;
-  
+  let updateContacts = contacts.addContacts
+
+  /*
+  console log tests
+
+  console.log(contacts)
+  contactList.forEach(e => console.log(e.name, e.phone, e.email))
+  console.log(updateContacts)
+  */
+
+  //checks props contact array for current name being submit
 
   useEffect(() => {
    contactList.forEach(element => {
-    console.log(element)
+    if(name === element.name){
+      setDup(true);
+      console.log(`${name} is already taken`)
+    } else { 
+      setDup(false)
+      console.log(`${name} is availabile`)
+    }
    })
-   console.log(addContacts)
   })
 
   const handleSubmit = (e) => {
@@ -30,13 +47,13 @@ export const ContactsPage = (contacts, addContacts) => {
     */
 
     if(dup === false){
-      addContacts({name: name, phone: phone, email: email})
+      updateContacts({name: name, phone: phone, email: email})
     }
 
     setName('');
     setPhone('');
     setEmail('');
-
+    alert(`${name}, ${phone}, and ${email} is being added`)
   };
 
   /*
@@ -47,7 +64,8 @@ export const ContactsPage = (contacts, addContacts) => {
   return (
     <div>
       <section>
-        <h2>Add Contact</h2> 
+        <h2>Add Contact</h2>
+        <input></input>
       </section>
       <hr />
       <section>
