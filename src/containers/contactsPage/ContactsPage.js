@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { ContactForm } from '../../components/contactForm/ContactForm'
 
-export const ContactsPage = (contacts, addContacts) => {
+export const ContactsPage = (props) => {
   /*
   Defining state variables for 
   contact info and duplicate check
@@ -14,8 +15,8 @@ export const ContactsPage = (contacts, addContacts) => {
 
   //props extracted
 
-  let contactList = contacts.contacts;
-  let updateContacts = contacts.addContacts
+  let contactList = props.contacts;
+  let addContacts = props.addContacts
 
   /*
   console log tests
@@ -47,13 +48,13 @@ export const ContactsPage = (contacts, addContacts) => {
     */
 
     if(dup === false){
-      updateContacts({name: name, phone: phone, email: email})
-    }
+      addContacts({name: name, phone: phone, email: email})
+      setName('');
+      setPhone('');
+      setEmail('');
+      alert(`${name}, ${phone}, and ${email} is being added`)
+    } else { alert('submission did not go through')}
 
-    setName('');
-    setPhone('');
-    setEmail('');
-    alert(`${name}, ${phone}, and ${email} is being added`)
   };
 
   /*
@@ -65,7 +66,7 @@ export const ContactsPage = (contacts, addContacts) => {
     <div>
       <section>
         <h2>Add Contact</h2>
-        <input></input>
+        <ContactForm/>
       </section>
       <hr />
       <section>

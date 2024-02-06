@@ -10,6 +10,11 @@ export const ContactForm = ({
   handleSubmit
 }) => {
   return (
-    ContactForm
+    <form>
+      <input></input>
+      <input></input>
+      <input></input>
+      <button>submit</button>
+    </form>
   );
 };
